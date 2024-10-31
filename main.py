@@ -47,7 +47,7 @@ class BinaryTree:
 sys.settrace(trace_func)
 
 def main():
-    # 创建二叉树并插入值
+    # Create BST and insert into vals
     binary_tree = BinaryTree()
     values_to_insert = [2, 3, 1, 6, 4, 3]
 
