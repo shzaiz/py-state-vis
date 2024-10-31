@@ -1,4 +1,4 @@
-# Visualizer README
+# Simple Python State Visualizer
 
 ## Overview
 
