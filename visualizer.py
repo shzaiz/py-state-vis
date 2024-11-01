@@ -199,6 +199,7 @@ class Visualizer:
             sub = self.visualize(frame.f_locals[localvar])
             if sub is not None:
                 subgraph.add_subgraph(sub)
+        
         return subgraph
     
     def _find_elem_in_subgraph(self, subgraph:pydot.Subgraph):
@@ -214,8 +215,8 @@ class Visualizer:
         
         return None
     
-    def visualize_whole_state(self, valid_frames_frm = 1):
-        graph = pydot.Dot(graph_type='digraph', strict=True, compound=True, rankdir='TB')
+    def visualize_whole_state(self, valid_frames_frm = 1, strict = False):
+        graph = pydot.Dot(graph_type='digraph', strict=strict, compound=True, rankdir='TB')
         
 
         to_iter = inspect.stack()[valid_frames_frm:]
@@ -229,7 +230,7 @@ class Visualizer:
             sentinal_node.add_style("invisible")
             subgraphi.add_node(sentinal_node)
             subgraphi.set_name("cluster_"+str(id(to_iter[i].frame)))
-            subgraphi.set_label(("cluster_"+str(id(to_iter[i].frame))))
+            subgraphi.set_label(self.normalize(to_iter[i].function+":"+str(to_iter[i].frame.f_lineno)))
             subgraph.add_subgraph(subgraphi)
             if previous_cluster is not None:
                 curr = self._find_elem_in_subgraph(subgraphi)

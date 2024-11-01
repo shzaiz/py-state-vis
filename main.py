@@ -1,13 +1,6 @@
 from visualizer import *
 
-# Trace function, call visualizer to inspect state
-def trace_func(frame, event, arg):
-    # avoid drawing too many states, only up to main function.
-    # SURPRISE: The visualizer can visualize itself upon setting
-    # valid_frames_frm to 0. (but the output will be really verbose).
-    Visualizer().visualize_whole_state(valid_frames_frm=2).write_png("test.png")
-    input()
-    return trace_func  
+
 
 # A typical program in data structure class
 
@@ -41,6 +34,14 @@ class BinaryTree:
                 self._insert_recursive(node.right, value)
 
 
+# Trace function, call visualizer to inspect state
+def trace_func(frame, event, arg):
+    # avoid drawing too many states, only up to main function.
+    # SURPRISE: The visualizer can visualize itself upon setting
+    # valid_frames_frm to 0. (but the output will be really verbose).
+    Visualizer().visualize_whole_state(valid_frames_frm=2, strict=True).write_png("test.png")
+    input()
+    return trace_func  
 
 
 # set trace to invoke drawer function to inspect the state
@@ -53,6 +54,8 @@ def main():
 
     for value in values_to_insert:
         binary_tree.insert(value)
+
+    # lst = [[0]*2]*2
     
 
 main()
