@@ -223,7 +223,6 @@ class Visualizer:
         subgraph = pydot.Subgraph()
         subgraph.set_rankdir('TB')
         previous_cluster= None
-        # print(len(to_iter))
         for i, _ in enumerate(to_iter):
             subgraphi = self.visualize_frame(to_iter[i].frame)
             sentinal_node = pydot.Node("cluster_"+str(id(to_iter[i].frame)))
